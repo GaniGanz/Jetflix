@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Jetflix Sign Up / Log In</title>
+    <link rel="stylesheet" type="text/css" href="testcss.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+            overflow: hidden;
+        }
+
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+        .form-section {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 400px;
+            padding: 40px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .form-section h2 {
+            margin-bottom: 20px;
+            color: #e50914;
+            text-align: center;
+        }
+
+        .form-section form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-section label {
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .form-section input[type="text"],
+        .form-section input[type="email"],
+        .form-section input[type="password"] {
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+
+        .profile-pictures {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .profile-picture {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background-color: #ccc;
+            background-size: cover;
+            background-position: center;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .profile-picture:focus {
+            outline: 4px solid red;
+        }
+
+        .form-section button {
+            padding: 10px;
+            background-color: #e50914;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form-section button:hover {
+            background-color: #b2070a;
+        }
+
+        .form-section .error {
+            color: red;
+            margin-top: 5px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <video class="video-bg" autoplay loop muted>
+        <source src="San Andreas (2015) - Building Collapse Long Take.mp4" type="video/mp4">
+    </video>
+    <div class="overlay"></div>
+
+    <div class="form-section">
+        <h2>Sign Up</h2>
+        <form onsubmit="return validateForm()" action="teshtml.html">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" name="confirm-password" required>
+
+            <label for="date-of-birth">Date of Birth</label>
+            <input type="text" id="date-of-birth" name="date-of-birth" required>
+
+            <label for="gender">Gender</label>
+            <select id="gender" name="gender" required>
+                <option value="">Select Gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
+
+            <label for="terms-and-conditions">
+                <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" required>
+                I agree to the terms and conditions
+            </label>
+
+            <div class="profile-pictures">
+                <button type="button" class="profile-picture" style="background-image: url('profile1.jpeg')" onclick="selectProfilePicture(1)"></button>
+                <button type="button" class="profile-picture" style="background-image: url('profile2.jpeg')" onclick="selectProfilePicture(2)"></button>
+                <button type="button" class="profile-picture" style="background-image: url('profile3.jpeg')" onclick="selectProfilePicture(3)"></button>
+            </div>
+
+            <input type="hidden" id="selectedPicture" name="selectedPicture">
+
+            <button type="submit">Sign Up</button>
+
+            <div id="error-container">
+                <p class="error" id="name-error"></p>
+                <p class="error" id="email-error"></p>
+                <p class="error" id="password-error"></p>
+                <p class="error" id="confirm-password-error"></p>
+                <p class="error" id="date-of-birth-error"></p>
+                <p class="error" id="gender-error"></p>
+                <p class="error" id="terms-and-conditions-error"></p>
+            </div>
+        </form>
+    </div>
+<!-- script untuk javascript -->
+    <script>
+        let selectedPictureIndex = -1;
+
+        function selectProfilePicture(index) {
+            const profilePictures = document.getElementsByClassName('profile-picture');
+
+            if (selectedPictureIndex !== -1) {
+                profilePictures[selectedPictureIndex].classList.remove('selected');
+            }
+
+            selectedPictureIndex = index - 1;
+            profilePictures[selectedPictureIndex].classList.add('selected');
+            document.getElementById('selectedPicture').value = index;
+        }
+
+        function validateForm() {
+            clearErrors();
+
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+            const dateOfBirth = document.getElementById('date-of-birth').value.trim();
+            const gender = document.getElementById('gender').value.trim();
+            const termsAndConditions = document.getElementById('terms-and-conditions').checked;
+
+            let isValid = true;
+
+            if (name === '') {
+                displayError('name-error', 'Please enter your name');
+                isValid = false;
+            }
+
+            if (email === '') {
+                displayError('email-error', 'Please enter your email');
+                isValid = false;
+            }
+
+            if (password === '') {
+                displayError('password-error', 'Please enter a password');
+                isValid = false;
+            }
+
+            if (confirmPassword === '') {
+                displayError('confirm-password-error', 'Please confirm your password');
+                isValid = false;
+            }
+
+            if (password !== confirmPassword) {
+                displayError('confirm-password-error', 'Passwords do not match');
+                isValid = false;
+            }
+
+            if (dateOfBirth === '') {
+                displayError('date-of-birth-error', 'Please enter your date of birth');
+                isValid = false;
+            }
+
+            if (gender === '') {
+                displayError('gender-error', 'Please select your gender');
+                isValid = false;
+            }
+
+            if (!termsAndConditions) {
+                displayError('terms-and-conditions-error', 'You must agree to the terms and conditions');
+                isValid = false;
+            }
+
+            return isValid;
+        }
+
+        function clearErrors() {
+            const errorContainer = document.getElementById('error-container');
+            const errors = errorContainer.getElementsByClassName('error');
+
+            Array.from(errors).forEach(error => {
+                error.textContent = '';
+            });
+        }
+
+        function displayError(id, message) {
+            const errorElement = document.getElementById(id);
+            errorElement.textContent = message;
+        }
+    </script>
+</body>
+</html>

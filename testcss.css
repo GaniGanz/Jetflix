@@ -1,0 +1,288 @@
+/* Gaya-gaya CSS untuk halaman Netflix */
+
+/* Gaya-gaya global */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+/* Gaya-gaya Header */
+header {
+  background-color: black;
+  color: white;
+  padding: 10px;
+}
+
+/* Gaya-gaya Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(to bottom, black 0%, #e50914 100%);
+  border-bottom: none;
+}
+
+.navbar img {
+  height: 40px;
+}
+
+.navbar-item {
+  display: flex;
+  gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: white;
+}
+
+/* Gaya-gaya bagian profil */
+.profile-section {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background: linear-gradient(to bottom, #e50914 0%, #111);
+}
+
+.profile-picture {
+  width: 60px;
+  height: 60px;
+  background-color: #ccc;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.profile-details {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  text-align: right;
+}
+
+.profile-details h3 {
+  color: white;
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.profile-details p {
+  color: #999;
+  font-size: 14px;
+}
+
+/* Gaya-gaya bagian hero */
+.hero-section {
+  position: relative;
+  padding: 120px;
+  text-align: center;
+  background-image: linear-gradient(to bottom, #111, transparent 100%);
+}
+
+.video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(35, 35, 35, 0.6);
+  z-index: -1;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-section h1 {
+  font-size: 40px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.hero-section p {
+  font-size: 20px;
+  margin-bottom: 40px;
+  color: white;
+}
+
+/* Gaya-gaya tombol di bagian hero */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #e50914;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.btn:hover {
+  background-color: #b2070a;
+}
+
+/* Gaya-gaya tambahan untuk tombol saat ditekan */
+.btn:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* Gaya-gaya bagian film */
+.movies-section {
+  padding: 20px;
+  background-color: #111;
+}
+
+.movies-section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+/* Mengubah warna teks kategori menjadi putih */
+.movies-section h3 {
+  color: white;
+}
+
+.movie-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+}
+
+.movie-card {
+  display: inline-block;
+  width: 200px;
+  margin-right: 20px;
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.movie-card img {
+  width: 100%;
+}
+
+.movie-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  color: white;
+}
+
+.dark-mode .movies-section {
+  background-color: #222;
+}
+
+.dark-mode .movies-section h3 {
+  color: white;
+}
+
+/* Gaya-gaya untuk kartu film dan acara TV */
+.movie-card,
+.tv-show-card {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  width: 200px; /* Tetapkan lebar tetap agar ukuran konsisten */
+}
+
+.movie-card img,
+.tv-show-card img {
+  display: block;
+  width: 100%;
+  height: 300px; /* Tetapkan tinggi tetap agar ukuran konsisten */
+  object-fit: cover; /* Pastikan gambar mengisi kontainer */
+  border-radius: 4px;
+}
+
+.movie-card h3,
+.tv-show-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  color: white;
+}
+
+/* Gaya-gaya bagian acara TV */
+.tv-shows-section {
+  padding: 20px;
+  background-color: #111;
+}
+
+.tv-shows-section h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  color: white;
+}
+
+.tv-show-card {
+  display: inline-block;
+  width: 200px;
+  margin-right: 20px;
+}
+
+.tv-show-card img {
+  width: 100%;
+  height: 300px; /* Tetapkan tinggi tetap agar ukuran konsisten */
+  object-fit: cover; /* Pastikan gambar mengisi kontainer */
+}
+
+.tv-show-card h3 {
+  font-size: 16px;
+  margin-top: 10px;
+  color: white;
+}
+
+/* Gaya-gaya footer */
+footer {
+  background-color: #111;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.dark-mode .movie-card {
+  color: white;
+}
+
+/* Gaya-gaya untuk tombol putar dan unduh */
+.play-button,
+.download-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #e50914;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.play-button:hover,
+.download-button:hover {
+  background-color: #b2070a;
+}
+
+/* Gaya-gaya tambahan untuk tombol saat ditekan */
+.play-button:active,
+.download-button:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
